@@ -1,0 +1,29 @@
+@startuml
+
+autonumber
+
+Server -> Plugin: Start Process, read stdout
+Plugin --> Server: Write unix socket on which gRPC server started
+
+loop till the end
+Plugin -> Server: Logs via gRPC
+end
+
+group Simple Communication
+Server -> Plugin: Simple Request
+Plugin --> Server: Simple Response
+end
+
+group Bidirectional Communication
+Server -> Plugin: Complex  Request
+Plugin -> Plugin: Start gRPC Server
+Plugin -> Server: Send intermediate request
+Server -> Plugin: Receive intermediate response
+Plugin --> Server: Complex Response
+end
+
+
+Server -> Plugin: Close
+Plugin --> Plugin: os.Exit
+
+@enduml

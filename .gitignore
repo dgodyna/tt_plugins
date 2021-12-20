@@ -55,8 +55,7 @@ buildNumber.properties
 *.dylib
 *.dll
 
-# Fortran module files
-*.mod
+
 *.smod
 
 # Compiled Static libraries
@@ -116,7 +115,6 @@ buildNumber.properties
 *.pdb
 
 # Kernel Module Compile Results
-*.mod*
 *.cmd
 .tmp_versions/
 modules.order
