@@ -11,5 +11,24 @@ func ProvideEcher() api.Echer {
 }
 
 func main() {
+	_ = NewTest()
 	//	just empty main file to build pluginn
+}
+
+type test struct {
+	s string
+}
+
+//export NewTest
+//go:noinline
+func NewTest() *test {
+	n := GetName()
+	return &test{
+		s: n,
+	}
+}
+
+func GetName() string {
+
+	return "tetete"
 }

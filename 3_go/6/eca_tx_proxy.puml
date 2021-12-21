@@ -1,0 +1,36 @@
+@startuml
+
+autonumber
+
+ECA -> ECA: Lookup Plugin
+
+loop till the end
+ECA -> NTT: Get Reflection Information
+NTT --> ECA: Reflection Information
+ECA -> ECA:  initialize reverse-proxy
+end
+
+group ECA call
+Client -> ECA: get api/core/v1alpha37/customers
+ECA --> Client: get api/core/v1alpha37/customers  response
+end
+
+group NTT Super API call
+Client -> ECA: get api/ntt/v2022.2.0/superAPI request
+ECA -> NTT: proxy api/ntt/v2022.2.0/superAPI request
+
+group Transaction
+NTT -> ECA: Open Transaction
+ECA -> NTT: TX ID
+NTT -> ECA: get some resource request
+ECA --> NTT: get some resource response
+NTT -> ECA: sql insert (over SQL API)
+ECA --> NTT: sql insert result (over SQL API)
+NTT -> ECA: Commit Transaction
+ECA -> NTT: Commit Transaction OK
+end
+NTT --> ECA: api/ntt/v2022.2.0/superAPI response
+ECA --> Client: proxy api/ntt/v2022.2.0/superAPI response
+end
+
+@enduml

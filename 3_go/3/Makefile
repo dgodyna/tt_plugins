@@ -4,6 +4,8 @@ prepare:
 
 build_plugin: prepare
 	cd plugin && go build -buildmode=plugin -o ../solution/plugin.so ./cmd/plugin
+build_plugin_bin: prepare
+	cd plugin && go build -o ../solution/plugin ./cmd/plugin
 
 build_server: prepare
 	cd server && go build -overlay="$$(~/go/bin/go-patch-overlay ./patches)" -o ../solution/server ./cmd/server

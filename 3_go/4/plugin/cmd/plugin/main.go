@@ -6,9 +6,8 @@ import (
 )
 
 //export PrintLine
-func PrintLine(s string) {
-	fmt.Println(s)
-
+func PrintLine(cstr *C.char) {
+	fmt.Println(C.GoString(cstr))
 }
 
 func main() {
