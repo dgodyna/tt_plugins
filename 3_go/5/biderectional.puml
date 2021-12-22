@@ -16,10 +16,11 @@ end
 
 group Bidirectional Communication
 Server -> Plugin: Complex  Request
-Plugin -> Plugin: Start gRPC Server
+Plugin -> Server: Dial gRPC Connection
 Plugin -> Server: Send intermediate request
 Server -> Plugin: Receive intermediate response
 Plugin --> Server: Complex Response
+Plugin -> Server: Close gRPC Connection
 end
 
 

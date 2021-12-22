@@ -17,7 +17,10 @@ func main() {
 		panic(err)
 	}
 
-	var provider = lookup.(func() api.Echer)
+	var provider, ok = lookup.(func() api.Echer)
+	if !ok {
+		panic(fmt.Errorf("unabe to cust loaded function 'ProvideEcher' with type '%T' to 'func() api.Echer'", lookup))
+	}
 	echer := provider()
 	color.Green("Calling Pugin")
 	echer.Echo("gophers")

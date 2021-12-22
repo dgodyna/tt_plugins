@@ -1,3 +1,3 @@
 #pragma once
 
-void echo(const char* type);
+void echo(const char* message);
