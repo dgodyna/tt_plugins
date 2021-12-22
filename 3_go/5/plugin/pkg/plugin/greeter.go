@@ -12,7 +12,7 @@ type greeter struct {
 }
 
 func (g *greeter) Greet(_ context.Context, r *api.Request) (*api.Response, error) {
-	return &api.Response{Result: []byte(fmt.Sprintf("hello %s from custom plugin", r.Name))}, nil
+	return &api.Response{Result: []byte(fmt.Sprintf("hello %s from custom plugin!!!!!1", r.Name))}, nil
 }
 
 func NewGreeter() api.GreeterServer {
